@@ -63,6 +63,8 @@ function game() {
         let winner = returnArray[0];
         let computerChoice = returnArray[1];
 
+        playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+
         if (winner == "player") {
             console.log(`You win! ${playerChoice} beats ${computerChoice}.`);
         } else if (winner == "computer") {
