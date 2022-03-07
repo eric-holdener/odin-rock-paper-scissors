@@ -58,24 +58,55 @@ function playRound(playerChoice) {
 
 function determineWinner(winner, playerChoice, computerChoice) {
     const container = document.querySelector('#winner-message');
+    const counterContainer = document.querySelector('#counter');
 
-    console.log(container.childNodes);
+    let playerWins = 0;
+    let computerWins = 0;
+    let ties = 0;
 
-    if (container.hasChildNodes) {
-        console.log('in if statement');
+    if (container.childNodes.length > 0) {
         container.removeChild(container.firstChild);
     }
 
+    if (counterContainer.childNodes.length > 0) {
+        let counterText = (counterContainer.firstChild.textContent);
+        let computerIndex = counterText.indexOf("Computer");
+        let tiesIndex = counterText.indexOf("Ties");
+
+        playerWins = counterText.substring(8, computerIndex-1);
+        computerWins = counterText.substring(computerIndex+9, tiesIndex-1);
+        ties = counterText.substring(tiesIndex+5);
+
+        playerWins = parseInt(playerWins);
+        computerWins = parseInt(computerWins);
+        ties = parseInt(ties);
+
+        counterContainer.removeChild(counterContainer.firstChild);
+    }
+
     const content = document.createElement('p');
+    const counter = document.createElement('p');
+
     content.classList.add('winner');
+    counter.classList.add('counter');
 
     if (winner == "player") {
         content.textContent = `You win! ${playerChoice} beats ${computerChoice}.`;
+
+        playerWins += 1;
+        counter.textContent = `Player: ${playerWins} Computer: ${computerWins} Ties: ${ties}`;
     } else if (winner == "computer") {
         content.textContent = `You lose! ${computerChoice} beats ${playerChoice}.`;
+
+        computerWins += 1;
+        counter.textContent = `Player: ${playerWins} Computer: ${computerWins} Ties: ${ties}`;;
     } else if (winner == "tie") {
         content.textContent = `You tie! You both picked ${computerChoice}.`;
+
+        ties += 1;
+        counter.textContent = `Player: ${playerWins} Computer: ${computerWins} Ties: ${ties}`;
     }
 
     container.appendChild(content);
+    counterContainer.appendChild(counter);
 }
