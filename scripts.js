@@ -12,54 +12,48 @@ function computerPlay() {
     }
 }
 
-function playRound(computerChoice, playerChoice) {
+function playRound(playerChoice) {
+    let computerChoice = computerPlay();
+
     if (computerChoice == "Rock" && playerChoice == "Rock") {
         let winner = "tie";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     }
     else if (computerChoice == "Rock" && playerChoice == "Paper") {
         let winner = "player";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     }
     else if (computerChoice == "Rock" && playerChoice == "Scissors") {
         let winner = "computer";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     }
     else if (computerChoice == "Paper" && playerChoice == "Paper") {
         let winner = "tie";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     }
     else if (computerChoice == "Paper" && playerChoice == "Rock") {
         let winner = "computer";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     }
     else if (computerChoice == "Paper" && playerChoice == "Scissors") {
         let winner = "player";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     }
     else if (computerChoice == "Scissors" && playerChoice == "Scissors") {
         let winner = "tie";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     }
     else if (computerChoice == "Scissors" && playerChoice == "Paper") {
         let winner = "computer";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     }
     else if (computerChoice == "Scissors" && playerChoice == "Rock") {
         let winner = "player";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     } else {
         winner = "no one";
-        return winner;
+        determineWinner(winner, playerChoice, computerChoice);
     }
-}
-
-function game(playerChoice) {
-    let computerChoice = computerPlay();
-    
-    let winner = playRound(computerChoice, playerChoice);
-
-    determineWinner(winner, playerChoice, computerChoice);
 }
 
 function determineWinner(winner, playerChoice, computerChoice) {
