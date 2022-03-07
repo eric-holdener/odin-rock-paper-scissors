@@ -57,11 +57,25 @@ function playRound(playerChoice) {
 }
 
 function determineWinner(winner, playerChoice, computerChoice) {
-    if (winner == "player") {
-        console.log(`You win! ${playerChoice} beats ${computerChoice}.`);
-    } else if (winner == "computer") {
-        console.log(`You lose! ${computerChoice} beats ${playerChoice}.`);
-    } else if (winner == "tie") {
-        console.log(`You tie! You both picked ${computerChoice}.`);
+    const container = document.querySelector('#winner-message');
+
+    console.log(container.childNodes);
+
+    if (container.hasChildNodes) {
+        console.log('in if statement');
+        container.removeChild(container.firstChild);
     }
+
+    const content = document.createElement('p');
+    content.classList.add('winner');
+
+    if (winner == "player") {
+        content.textContent = `You win! ${playerChoice} beats ${computerChoice}.`;
+    } else if (winner == "computer") {
+        content.textContent = `You lose! ${computerChoice} beats ${playerChoice}.`;
+    } else if (winner == "tie") {
+        content.textContent = `You tie! You both picked ${computerChoice}.`;
+    }
+
+    container.appendChild(content);
 }
