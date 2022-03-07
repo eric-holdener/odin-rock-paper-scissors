@@ -13,67 +13,61 @@ function computerPlay() {
 }
 
 function playRound(computerChoice, playerChoice) {
-    if (computerChoice == "Rock" && playerChoice == "rock") {
+    if (computerChoice == "Rock" && playerChoice == "Rock") {
         let winner = "tie";
         return [winner, computerChoice];
     }
-    else if (computerChoice == "Rock" && playerChoice == "paper") {
+    else if (computerChoice == "Rock" && playerChoice == "Paper") {
         let winner = "player";
         return [winner, computerChoice];
     }
-    else if (computerChoice == "Rock" && playerChoice == "scissors") {
+    else if (computerChoice == "Rock" && playerChoice == "Scissors") {
         let winner = "computer";
         return [winner, computerChoice];
     }
-    else if (computerChoice == "Paper" && playerChoice == "paper") {
+    else if (computerChoice == "Paper" && playerChoice == "Paper") {
         let winner = "tie";
         return [winner, computerChoice];
     }
-    else if (computerChoice == "Paper" && playerChoice == "rock") {
+    else if (computerChoice == "Paper" && playerChoice == "Rock") {
         let winner = "computer";
         return [winner, computerChoice];
     }
-    else if (computerChoice == "Paper" && playerChoice == "scissors") {
+    else if (computerChoice == "Paper" && playerChoice == "Scissors") {
         let winner = "player";
         return [winner, computerChoice];
     }
-    else if (computerChoice == "Scissors" && playerChoice == "scissors") {
+    else if (computerChoice == "Scissors" && playerChoice == "Scissors") {
         let winner = "tie";
         return [winner, computerChoice];
     }
-    else if (computerChoice == "Scissors" && playerChoice == "paper") {
+    else if (computerChoice == "Scissors" && playerChoice == "Paper") {
         let winner = "computer";
-        return [winner, computerChoice];
+        return winner;
     }
-    else if (computerChoice == "Scissors" && playerChoice == "rock") {
+    else if (computerChoice == "Scissors" && playerChoice == "Rock") {
         let winner = "player"
-        return [winner, computerChoice];
+        return winner;
     } else {
         winner = "no one";
-        return [winner, computerChoice];
+        return winner;
     }
 }
 
-function game() {
-    for (let i=0; i<5; i++) {
-        playerChoice = window.prompt("Choose rock, paper, or scissors");
-        playerChoice = playerChoice.toLowerCase();
+function game(playerChoice) {
+    let computerChoice = computerPlay();
 
-        let returnArray = playRound(computerPlay(), playerChoice);
-        let winner = returnArray[0];
-        let computerChoice = returnArray[1];
+    let winner = playRound(computerChoice, playerChoice);
 
-        playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
 
-        if (winner == "player") {
-            console.log(`You win! ${playerChoice} beats ${computerChoice}.`);
-        } else if (winner == "computer") {
-            console.log(`You lose! ${computerChoice} beats ${playerChoice}.`);
-        } else if (winner == "tie") {
-            console.log(`You tie! You both picked ${computerChoice}.`);
-        } else {
-            console.log("Maybe there was a typo? You didn't pick a valid answer. Try again")
+    if (winner == "player") {
+        console.log(`You win! ${playerChoice} beats ${computerChoice}.`);
+    } else if (winner == "computer") {
+        console.log(`You lose! ${computerChoice} beats ${playerChoice}.`);
+    } else if (winner == "tie") {
+        console.log(`You tie! You both picked ${computerChoice}.`);
+    } else {
+        console.log("Maybe there was a typo? You didn't pick a valid answer. Try again")
             i -= 1;
-        }
     }
 }
