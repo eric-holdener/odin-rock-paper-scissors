@@ -90,23 +90,43 @@ function determineWinner(winner, playerChoice, computerChoice) {
     content.classList.add('winner');
     counter.classList.add('counter');
 
+
+
     if (winner == "player") {
-        content.textContent = `You win! ${playerChoice} beats ${computerChoice}.`;
-
         playerWins += 1;
-        counter.textContent = `Player: ${playerWins} Computer: ${computerWins} Ties: ${ties}`;
+        if (playerWins == 5 || computerWins == 5) {
+            content.textContent = `You win! You beat the computer to 5 wins. Restarting now :)`;
+            console.log(counterContainer.childNodes);
+
+            container.appendChild(content);
+        } else {
+            content.textContent = `You win! ${playerChoice} beats ${computerChoice}.`;
+            counter.textContent = `Player: ${playerWins} Computer: ${computerWins} Ties: ${ties}`;
+
+            container.appendChild(content);
+            counterContainer.appendChild(counter);
+        }
     } else if (winner == "computer") {
-        content.textContent = `You lose! ${computerChoice} beats ${playerChoice}.`;
-
         computerWins += 1;
-        counter.textContent = `Player: ${playerWins} Computer: ${computerWins} Ties: ${ties}`;;
+        if (playerWins == 5 || computerWins == 5) {
+            content.textContent = `You lose! The computer beat you to 5 wins. Restarting now :)`;
+            console.log(counterContainer.childNodes);
+
+            container.appendChild(content);
+        } else {
+            content.textContent = `You lose! ${computerChoice} beats ${playerChoice}.`;
+            counter.textContent = `Player: ${playerWins} Computer: ${computerWins} Ties: ${ties}`;;
+
+            container.appendChild(content);
+            counterContainer.appendChild(counter);
+        }
     } else if (winner == "tie") {
-        content.textContent = `You tie! You both picked ${computerChoice}.`;
-
         ties += 1;
+        
+        content.textContent = `You tie! You both picked ${computerChoice}.`;
         counter.textContent = `Player: ${playerWins} Computer: ${computerWins} Ties: ${ties}`;
-    }
 
-    container.appendChild(content);
-    counterContainer.appendChild(counter);
+        container.appendChild(content);
+        counterContainer.appendChild(counter);
+    }
 }
